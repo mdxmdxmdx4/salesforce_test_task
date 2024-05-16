@@ -1,0 +1,74 @@
+<template>
+    <lightning-card title="Service Case Queue" icon-name="standard:case">
+        <div class="slds-m-around_medium">
+            <template if:true={cases}>
+                <lightning-button-icon icon-name="utility:sync" alternative-text="Refresh" title="Refresh" 
+                onclick={refreshTable} class="slds-m-bottom_small"></lightning-button-icon>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Id">Id</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Case Number">Case Number</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Assignee">Assignee</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Case Status">Case Status</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Priority">Priority</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Origin">Origin</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={cases} for:item="caseRecord">
+                            <tr class="slds-hint-parent" key={caseRecord.Id}>
+                                <td data-label="Id">
+                                    <div class="slds-truncate" title={caseRecord.Id}>{caseRecord.Id}</div>
+                                </td>
+                                <td data-label="Case Number">
+                                    <div class="slds-truncate" title={caseRecord.CaseNumber}>
+                                        <a href="#" onclick={navigateToCasePage} data-id={caseRecord.Id}>{caseRecord.CaseNumber}</a>
+                                    </div>
+                                </td>
+                                <td data-label="Assignee">
+                                    <div class="slds-truncate" title={caseRecord.OwnerId}>{caseRecord.OwnerId}</div>
+                                </td>
+                                <td data-label="Case Status">
+                                    <div class="slds-truncate" title={caseRecord.Status}>
+                                        <select data-id={caseRecord.Id} value={caseRecord.Status} onchange={handleStatusChange}>
+                                            <template for:each={caseOptions} for:item="option">
+                                                <template if:true={option.isSelected}>
+                                                    <option key={option.value} value={option.value} selected>{option.label}</option>
+                                                </template>
+                                                <template if:false={option.isSelected}>
+                                                    <option key={option.value} value={option.value}>{option.label}</option>
+                                                </template>
+                                            </template>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td data-label="Priority">
+                                    <div class="slds-truncate" title={caseRecord.Priority}>{caseRecord.Priority}</div>
+                                </td>
+                                <td data-label="Origin">
+                                    <div class="slds-truncate" title={caseRecord.Origin}>{caseRecord.Origin}</div>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+            <template if:false={cases}>
+                <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+            </template>
+        </div>
+    </lightning-card>
+</template>

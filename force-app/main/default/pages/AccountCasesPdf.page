@@ -1,0 +1,12 @@
+<apex:page controller="AccountCasesPdfCtrl" renderas="pdf">
+    <apex:pageBlock title="Cases from Last Week">
+        <apex:pageBlockTable value="{!accountCasesPrevWeek}" var="c" style="width: 100%" >
+            <apex:column value="{!c.Account.Name}"/>
+            <apex:column value="{!c.Owner.Name}"/>
+            <apex:column value="{!c.CaseNumber}"/>
+            <apex:column value="{!c.Status}"/>
+            <apex:column value="{!c.Priority}" style="padding: 2px 5px;"/>
+            <apex:column value="{!c.Origin}" />
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

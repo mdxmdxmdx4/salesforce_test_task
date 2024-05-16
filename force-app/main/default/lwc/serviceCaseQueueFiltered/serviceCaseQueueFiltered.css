@@ -1,0 +1,16 @@
+lightning-button-icon {
+    float: right;
+}
+
+.slds-table {
+    margin-top: 20px;
+}
+
+.slds-table th, .slds-table td {
+    text-align: center;
+}
+
+table {
+    border: 1px solid black;
+    border-radius: 3px;
+}
