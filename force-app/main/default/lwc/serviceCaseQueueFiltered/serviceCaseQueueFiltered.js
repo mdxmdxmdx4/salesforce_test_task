@@ -43,7 +43,6 @@ export default class ServiceCaseQueueFiltered extends NavigationMixin(LightningE
         }
     }
     
-
     get caseOptions() {
         return this.caseStatusValues;
     }

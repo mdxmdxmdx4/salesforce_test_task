@@ -10,7 +10,7 @@ public without sharing class AccountCasesPdfCtrl {
             SELECT Account.Name, Owner.Name, CaseNumber, Status, Priority, Origin
             FROM Case
             WHERE CreatedDate >= :previousMonday AND CreatedDate <= :lastSunday
-            ORDER BY Account.Name
+            ORDER BY Account.Name, Owner.Name
         ];
     }
 }
